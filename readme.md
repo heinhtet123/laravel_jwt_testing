@@ -1,7 +1,7 @@
 ## Laravel JWT Auth Tutorial
 
 ## Demo
-http://localhost/laravel_jwtauth/public/index.php/api/user/login
+http://localhost/laravel_jwtauth/public/index.php/api/user/login<Enter>
 email:heinhtet@gmail.com
 password:secretstarfall
 
