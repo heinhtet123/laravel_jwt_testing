@@ -53,8 +53,9 @@ class UserController extends Controller
         
       //  $token = JWTAuth::getToken();
   //      echo $token;
-       dd(JWTAuth::parseToken());
-       dd(JWTAuth::parseToken()->authenticate());
+        return response()->json(User::get());
+       // dd(JWTAuth::parseToken());
+       // dd(JWTAuth::parseToken()->authenticate());
         //
        //$credentials = $request->only('email', 'password');
 
