@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 class UserController extends Controller
 {
     /**
@@ -14,10 +16,49 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function login()
     {
-        //
+        return view('login.login');
     }
+
+
+    public function authenticate(Request $request)
+    {
+       $credentials = $request->only(['email', 'password']);
+       
+      // $credentials = ['email' => 'chris@scotch.io', 'password' => 'secret'];
+        try{
+              if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+              }
+
+
+
+
+        }catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return redirect()->route('api.user.login');
+           // return response()->json(['token_expired'], $e->getStatusCode());
+
+        }catch(JWTException $e){
+              return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        // $token=response()->json(compact('token'));
+        return redirect()->route('api.user.index',['token'=>$token]);
+    }
+
+    public function index(Request $request)
+    {
+        
+      //  $token = JWTAuth::getToken();
+  //      echo $token;
+       dd(JWTAuth::parseToken());
+       dd(JWTAuth::parseToken()->authenticate());
+        //
+       //$credentials = $request->only('email', 'password');
+
+    }   
 
     /**
      * Show the form for creating a new resource.

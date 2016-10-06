@@ -15,4 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("user","UserController");
+
+
+
+Route::group(['prefix'=>'api'],function(){
+	Route::get("user/login",['uses'=>"UserController@login",'as'=>'api.user.login']);
+	Route::post("user/authenticate",['uses'=>"UserController@authenticate",'as'=>'api.user.authenticate']);	
+	
+	Route::group(['middleware'=>'jwt.auth'],function(){
+		Route::resource("user","UserController",['only'=>"index"]);
+	});
+	
+});
