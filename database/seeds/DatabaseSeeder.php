@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         
          $users = array(
-                ['name' => 'Ryan Chenkie', 'email' => 'ryanchenkie@gmail.com', 'password' => Hash::make('secret')],
+                ['name' => 'heinhtet', 'email' => 'heinhtet@gmail.com', 'password' => Hash::make('secretstarfall')],
                 ['name' => 'Chris Sevilleja', 'email' => 'chris@scotch.io', 'password' => Hash::make('secret')],
                 ['name' => 'Holly Lloyd', 'email' => 'holly@scotch.io', 'password' => Hash::make('secret')],
                 ['name' => 'Adnan Kukic', 'email' => 'adnan@scotch.io', 'password' => Hash::make('secret')],
